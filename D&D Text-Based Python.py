@@ -34,7 +34,7 @@ def chooseClass():
                 print(player_list[x] + " have selected ROGUE")
                 regPlayer["Player " +str(x+1)] = {"Name" : player_list[x],
                                                 "Class" : "Rogue",
-                                                "HP" : 15,
+                                                "HP" : 13,
                                                 "Str" : 13,          
                                                 "Int" : 10,
                                                 "Agi" : 15}
@@ -43,7 +43,7 @@ def chooseClass():
                 print(player_list[x] + " have selected MAGE")
                 regPlayer["Player " +str(x+1)] = {"Name" : player_list[x],
                                                 "Class" : "Mage",
-                                                "HP" : 15,                                          
+                                                "HP" : 10,                                          
                                                 "Str" : 10,
                                                 "Int" : 15,
                                                 "Agi" : 13}
@@ -90,48 +90,166 @@ def delevelCond():
     input("Press enter to roll dice for level condition")
     print("rolling dice...")
     levelCond = random.randint(min, max)
-
-    if levelCond == 1:
+    currentCond = levelCond
+    if currentCond == 1:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] -= 5
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 3
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 3
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 3
 
-    if levelCond == 2:
+    if currentCond == 2:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] -= 3
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 2
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 2
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 2
     
-    if levelCond == 3:
+    if currentCond == 3:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] += 0
-    
-    if levelCond == 4:
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 1
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 1
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 1
+
+    if currentCond == 4:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] += 1
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 0
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 0
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 0
     
-    if levelCond == 5:
+    if currentCond == 5:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] += 3
-
-    if levelCond == 6:
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 1
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 1
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 1
+    
+    if currentCond == 6:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
             regPlayer[x]["HP"] += 5
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 2
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 2
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 2
 
     player_stats()
 
-## In progress
-def battleMode():
-    
-    HP = 15
-    for x in regPlayer:
-        DMG = regPlayer[x]["Str"]*0.75
+## reset player stats after every level
+def resetLevelCond():
+    resCond = currentCond
+    if resCond == 1:
+        for x in regPlayer:
+            regPlayer[x]["HP"] += 5
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 3
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 3
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 3
 
-    HP -= DMG
+    if resCond == 2:
+        for x in regPlayer:
+            regPlayer[x]["HP"] += 3
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 2
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 2
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 2
     
+    if resCond == 3:
+        for x in regPlayer:
+            regPlayer[x]["HP"] += 0
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] += 1
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] += 1
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] += 1
+
+    if resCond == 4:
+        for x in regPlayer:
+            regPlayer[x]["HP"] -= 1
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 0
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 0
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 0
+    
+    if resCond == 5:
+        for x in regPlayer:
+            regPlayer[x]["HP"] -= 2
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 1
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 1
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 1
+    
+    if resCond == 6:
+        for x in regPlayer:
+            regPlayer[x]["HP"] -= 3
+            if regPlayer[x]["Class"] == "Warrior":
+                regPlayer[x]["Str"] -= 2
+            if regPlayer[x]["Class"] == "Rogue":
+                regPlayer[x]["Agi"] -= 2
+            if regPlayer[x]["Class"] == "Mage":
+                regPlayer[x]["Int"] -= 2
+    player_stats()
+
+## Decides what player encounter in every level
+def player_encounter():
+    min = 1
+    max = 6
+    input("Press 'Enter' to know what you have encountered")
+    print("walking...")
+    encounters = random.randint(min, max)
+    
+    if encounters == 1:
+        print("Encounter 1")
+
+    if encounters == 2:
+        print("Encounter 2")
+
+    if encounters == 3:
+        print("Encounter 3")
+
+    if encounters == 4:
+        print("Encounter 4")
+
+    if encounters == 5:
+        print("Encounter 5")
+
+    if encounters == 6:
+        print("Encounter 6")
+
+
 
 os.system('cls') 
 nPlayer = int(input("Enter number of players: "))
@@ -141,6 +259,7 @@ regPlayer = {}
 levels = []
 currentLevel = 1
 currentCond = 0
+
 
 # Intro
 listPlayers()
@@ -156,8 +275,14 @@ while currentLevel <= len(levels):
     print("\nThe champions are now at Level " + str(currentLevel))
     currentLevel += 1
     delevelCond()
+    player_encounter()
+    resetLevelCond()
+
+
+
 
 
 print("Congratulation! You have completed your quest!")
     
 
+    
