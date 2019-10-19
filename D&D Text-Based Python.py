@@ -1,6 +1,14 @@
 import random
 import os
 
+os.system('cls') 
+nPlayer = int(input("Enter number of players: "))
+player_list = []
+player_score = []
+regPlayer = {}
+levels = []
+currentLevel = 1
+
 
 ## Display player stats
 def player_stats():
@@ -90,6 +98,7 @@ def delevelCond():
     input("Press enter to roll dice for level condition")
     print("rolling dice...")
     levelCond = random.randint(min, max)
+    global currentCond
     currentCond = levelCond
     if currentCond == 1:
         print("You have entered " + str(levelCond))
@@ -162,6 +171,7 @@ def delevelCond():
 ## reset player stats after every level
 def resetLevelCond():
     resCond = currentCond
+    print(resCond)
     if resCond == 1:
         for x in regPlayer:
             regPlayer[x]["HP"] += 5
@@ -250,17 +260,6 @@ def player_encounter():
         print("Encounter 6")
 
 
-
-os.system('cls') 
-nPlayer = int(input("Enter number of players: "))
-player_list = []
-player_score = []
-regPlayer = {}
-levels = []
-currentLevel = 1
-currentCond = 0
-
-
 # Intro
 listPlayers()
 chooseClass()
@@ -277,10 +276,6 @@ while currentLevel <= len(levels):
     delevelCond()
     player_encounter()
     resetLevelCond()
-
-
-
-
 
 print("Congratulation! You have completed your quest!")
     
