@@ -74,20 +74,15 @@ def listPlayers():
 
 ## Decides numbers of levels     
 def deLevel():
-    min = 1
-    max = 12
-    diceNum = 2
-    totalLevel = 0
+    min = 3
+    max = 24
     i = 1
-    input("\nPress Enter to roll dices...")
-    print("rolling dices...")
-    while i <= int(diceNum):
-        diceRe = random.randint(min, max)
-        print("Dice " + str(i) + ": " + (str(diceRe)))
-        i += 1
-        totalLevel += diceRe
+    input("\nPress Enter to roll dice...")
+    print("rolling dice...")
+    diceRe = random.randint(min, max)
+    print("Dice " + str(i) + ": " + (str(diceRe)))
 
-    for x in range(totalLevel):
+    for x in range(diceRe):
         x += 1
         levels.append(x)
 
@@ -103,7 +98,7 @@ def delevelCond():
     if currentCond == 1:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
-            regPlayer[x]["HP"] -= 5
+            regPlayer[x]["HP"] -= 4
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] -= 3
             if regPlayer[x]["Class"] == "Rogue":
@@ -114,7 +109,7 @@ def delevelCond():
     if currentCond == 2:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
-            regPlayer[x]["HP"] -= 3
+            regPlayer[x]["HP"] -= 2
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] -= 2
             if regPlayer[x]["Class"] == "Rogue":
@@ -136,7 +131,7 @@ def delevelCond():
     if currentCond == 4:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
-            regPlayer[x]["HP"] += 1
+            regPlayer[x]["HP"] += 0
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] += 0
             if regPlayer[x]["Class"] == "Rogue":
@@ -147,7 +142,7 @@ def delevelCond():
     if currentCond == 5:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
-            regPlayer[x]["HP"] += 3
+            regPlayer[x]["HP"] += 2
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] += 1
             if regPlayer[x]["Class"] == "Rogue":
@@ -158,7 +153,7 @@ def delevelCond():
     if currentCond == 6:
         print("You have entered " + str(levelCond))
         for x in regPlayer:
-            regPlayer[x]["HP"] += 5
+            regPlayer[x]["HP"] += 3
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] += 2
             if regPlayer[x]["Class"] == "Rogue":
@@ -174,7 +169,7 @@ def resetLevelCond():
     print(resCond)
     if resCond == 1:
         for x in regPlayer:
-            regPlayer[x]["HP"] += 5
+            regPlayer[x]["HP"] += 4
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] += 3
             if regPlayer[x]["Class"] == "Rogue":
@@ -184,7 +179,7 @@ def resetLevelCond():
 
     if resCond == 2:
         for x in regPlayer:
-            regPlayer[x]["HP"] += 3
+            regPlayer[x]["HP"] += 2
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] += 2
             if regPlayer[x]["Class"] == "Rogue":
@@ -204,7 +199,6 @@ def resetLevelCond():
 
     if resCond == 4:
         for x in regPlayer:
-            regPlayer[x]["HP"] -= 1
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] -= 0
             if regPlayer[x]["Class"] == "Rogue":
@@ -214,7 +208,6 @@ def resetLevelCond():
     
     if resCond == 5:
         for x in regPlayer:
-            regPlayer[x]["HP"] -= 2
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] -= 1
             if regPlayer[x]["Class"] == "Rogue":
@@ -224,7 +217,6 @@ def resetLevelCond():
     
     if resCond == 6:
         for x in regPlayer:
-            regPlayer[x]["HP"] -= 3
             if regPlayer[x]["Class"] == "Warrior":
                 regPlayer[x]["Str"] -= 2
             if regPlayer[x]["Class"] == "Rogue":
