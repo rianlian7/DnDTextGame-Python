@@ -225,6 +225,37 @@ def resetLevelCond():
                 regPlayer[x]["Int"] -= 2
     player_stats()
 
+def encounter1():
+    print("You have stumbled upon a chest. Press 'Enter' to open it. ")
+    min = 1
+    max = 3
+    for x in regPlayer:
+        randomItem = random.randint(min, max)
+        if randomItem == 1:
+            print(regPlayer[x]["Name"] + " received item 1")
+
+        if randomItem == 2:
+            print(regPlayer[x]["Name"] + " received item 2")
+
+        if randomItem == 3:
+            print(regPlayer[x]["Name"] + " received item 3")
+
+def encounter2():
+    print("Encounter 2")
+
+def encounter3():
+    print("Encounter 3")
+
+def encounter4():
+    print("Encounter 4")
+
+def encounter5():
+    print("Encounter 5")
+
+def encounter6():
+    print("Encounter 6")
+    
+
 ## Decides what player encounter in every level
 def player_encounter():
     min = 1
@@ -234,22 +265,22 @@ def player_encounter():
     encounters = random.randint(min, max)
     
     if encounters == 1:
-        print("Encounter 1")
+        encounter1()
 
     if encounters == 2:
-        print("Encounter 2")
+        encounter2()
 
     if encounters == 3:
-        print("Encounter 3")
+        encounter3()
 
     if encounters == 4:
-        print("Encounter 4")
+        encounter4()
 
     if encounters == 5:
-        print("Encounter 5")
+        encounter5()
 
     if encounters == 6:
-        print("Encounter 6")
+        encounter6()
 
 
 # Intro
