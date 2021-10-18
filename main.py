@@ -1,15 +1,16 @@
 from character import *
 
 players = []
+enemies = []
 
-players.append(character("Lian", "Archer", Const_MaxHp, Const_MaxArmor, True))
-players.append(character("Mien", "Mage", Const_MaxHp, Const_MaxArmor, True))
+playerTotal = int(input("Enter the number of players: "))
+count = 1
+while (count <= playerTotal):
+    playerName = input(f"Enter player {count} Name: ")
+    playerJob = input(f"Enter player {count} Job: ")
+    players.append(character(playerName, playerJob, Const_MaxHp, Const_MaxArmor, True))
+    count = count + 1
 
-players[0].damage(11)
-#players[1].damage(5)
-
-players[0].heal(3)
-players[0].addArmor(3)
-players[0].damage(2)
-
-print(players[0].status())
+for player in players:
+    print()
+    print(player.status())
