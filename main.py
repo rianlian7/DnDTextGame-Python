@@ -1,9 +1,10 @@
-
+import time
 from character import *
 from encounters import *
 from campaign import *
 players = []
 mainCampaign = Const_Linear
+
 while True:
     print('''
     Welcome to the DND-inspired text-based game or something...
@@ -12,8 +13,8 @@ while True:
 
     Anyhow, there are 3 types of campaign, which would you like to take a journey on?
     1. Linear
-    2. Semi-linear
-    3. Open-world
+    2. Semi-linear (Not working)
+    3. Open-world  (Not working)
 
     Enter your input with the number selection: ''')
     try:
@@ -32,22 +33,43 @@ while True:
     except ValueError:
         print("Please enter the campaign name using numbers")
 
-#
-#
-# playerTotal = int(input("Enter the number of players: "))
-# count = 1
-# while (count <= playerTotal):
-#     print()
-#     playerName = input(f"Enter player {count} Name: ")
-#     playerJob = input(f"Enter player {count} Job: ")
-#     players.append(character(playerName, playerJob, Const_MaxHp, Const_MaxArmor, True))
-#     count = count + 1
-#
-# for player in players:
-#     print()
-#     print(player.status())
-#
-#
-#
-#
-# event = encounters()
+while True:
+    try:
+        playerTotal = int(input("Enter the number of players: "))
+        count = 1
+        print()
+        while (count <= playerTotal):
+            playerName = input(f"Enter player {count} Name: ")
+            playerJob = input(f"Enter player {count} Job: ")
+            players.append(character(playerName, playerJob, Const_MaxHp, Const_MaxArmor, True))
+            count = count + 1
+            print()
+        for player in players:
+            print(player.status())
+
+        break
+    except ValueError:
+        print("Please enter the number of players.")
+
+print(f"Let's begin on a journey on our {mainCampaign.type} campaign.")
+time.sleep(1)
+
+
+if mainCampaign.type == Const_Linear:
+    for seq, stage in enumerate(mainCampaign.stageList):
+        print(f"We are now in {stage} {seq+1}")
+        time.sleep(1)
+        input("Please enter to continue")
+        event = encounters().randomEncounter(players)
+        print(f"Event is {event}")
+        if event:
+            print("Battle has won!")
+        else: # lose battle
+            print("Battle has lost. GAMES END!")
+            input("Press enter to end the game")
+            break
+
+        input("Please enter to go to the next stage")
+
+
+

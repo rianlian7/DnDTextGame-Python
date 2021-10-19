@@ -1,5 +1,9 @@
+import time
+import random
 Const_MaxHp = 10
 Const_MaxArmor = 5
+
+
 class character:
 
     def __init__(self, name, job, hp, ap, isPlayer):
@@ -13,45 +17,75 @@ class character:
         return f"{self.name} is a {self.job}"
 
     def status(self):
-        return f"{self.name} the {self.job} status: " \
-               f"\nHealth : {self.hp}" \
-               f"\nArmor : {self.ap}"
+        # return {"name": self.name,
+        #         "health": self.hp,
+        #         "armor": self.ap
+        #         }
+        return f"{self.name} ({self.job}): " \
+               f" Health : {self.hp}" \
+               f" | Armor : {self.ap} |"
 
     def damage(self, dmgAmount):
         print(f"{self.name} received {dmgAmount} damages.")
-        if self.ap > 0: # check shield
+        time.sleep(1)
+        if self.ap > 0:  # check shield
             if dmgAmount > self.ap:
                 dmgAmount = dmgAmount - self.ap
                 self.ap = 0
-                self.hp = self.hp - dmgAmount # remove hp after remove all of shield
+                self.hp = self.hp - dmgAmount  # remove hp after remove all of shield
                 print(f"{self.name}'s armor is broken!")
+                time.sleep(1)
+
             else:
                 self.ap = self.ap - dmgAmount
-        else: # damage health
+        else:  # damage health
             self.hp = self.hp - dmgAmount
             if self.hp < 0:
                 self.hp = 0
 
         print(f"{self.name} now has {self.hp} health points left!")
+        time.sleep(1)
         if self.ap > 0:
             print(f"{self.name} now has {self.ap} shield left!")
+            time.sleep(1)
 
     def heal(self, healAmount):
         print(f"{self.name} is healing by {healAmount}.")
+        time.sleep(1)
         if self.hp < Const_MaxHp:
             self.hp = self.hp + healAmount
             if self.hp >= Const_MaxHp:
                 self.hp = 10
             print(f"{self.name} health is now {self.hp} ")
+            time.sleep(1)
         else:
             print(f"{self.name} health is already full! (HP: {self.hp})")
+            time.sleep(1)
 
-    def addArmor(self, armorAmount):
+    def action(self):
+        if self.isPlayer:
+            try:
+                print('''
+                1. Attack
+                2. Heal
+                3. Fortify
+                ''')
+                action = int(input())
+            except:
+                print("Please enter the right input.")
+            return action
+        else:
+            return random.randint(1,3)
+
+    def fortify(self, armorAmount):
         print(f"{self.name} is adding {armorAmount} armor.")
+        time.sleep(1)
         if self.ap < Const_MaxArmor:
-            self.ap = self.hp + armorAmount
+            self.ap = self.ap + armorAmount
             if self.ap >= Const_MaxArmor:
                 self.ap = Const_MaxArmor
             print(f"{self.name} armor is now {self.ap} ")
+            time.sleep(1)
         else:
             print(f"{self.name}'s armor is full! (Armor: {self.ap})")
+            time.sleep(1)
