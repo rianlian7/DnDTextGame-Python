@@ -60,7 +60,6 @@ if mainCampaign.type == Const_Linear:
     for seq, stage in enumerate(mainCampaign.stageList):
         print(f"Stage {seq+1} : We are now in {stage} area.")
         time.sleep(1)
-        input("Please enter to continue")
         event = encounters().randomEncounter(players)
         if event == True:
             print("Battle has won!")

@@ -10,7 +10,7 @@ class encounters:
         randEncTotal = random.randint(1, 3)
         randEncDiff = random.randint(1, 3)
 
-        self.encType = randEncType  # 1-Battle, 2-Item
+        self.encType = 2  # 1-Battle, 2-Item
         self.encTotal = 1 # Things to do/battle/get
         self.encDiff = 1  # difficulty
 
@@ -103,20 +103,24 @@ class encounters:
     def itemFound(self, players):
         i_herb = "herbs"
         i_armor = "armor"
-        items = [i_herb, i_armor]
+        i_nothing = "nothing"
+        items = [i_herb, i_armor, i_nothing]
         itemFound = items[random.randint(0, len(items)-1)]
         print(f"You have found {itemFound}.")
         time.sleep(1)
-        if len(players) > 1:
-            for id, player in enumerate(players):
-                print(f"{id + 1}. {player.status()}")
-            selection = int(input("Who would you like to give the item to? Please enter the player number:  "))
-        else:
-            selection = 1
-        if itemFound == i_herb:
-            players[selection - 1].heal(random.randint(1, 3))
-        elif itemFound == i_armor:
-            players[selection - 1].fortify(random.randint(1, 3))
+        if itemFound != i_nothing:
+            if len(players) > 1:
+                for id, player in enumerate(players):
+                    print(f"{id + 1}. {player.status()}")
+                selection = int(input("Who would you like to give the item to? Please enter the player number:  "))
+            else:
+                selection = 1
+            if itemFound == i_herb:
+                players[selection - 1].heal(random.randint(1, 3))
+            elif itemFound == i_armor:
+                players[selection - 1].fortify(random.randint(1, 3))
+
+
 
     # def chores(self):
     #     print("You met some dude")
