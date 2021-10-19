@@ -43,11 +43,13 @@ class character:
             if self.hp < 0:
                 self.hp = 0
 
-        print(f"{self.name} now has {self.hp} health points left!")
-        time.sleep(1)
         if self.ap > 0:
-            print(f"{self.name} now has {self.ap} shield left!")
+            print(f"{self.name} now has {self.hp} health points and {self.ap} shield left!")
             time.sleep(1)
+        else:
+            print(f"{self.name} now has {self.hp} health points left!")
+            time.sleep(1)
+
 
     def heal(self, healAmount):
         print(f"{self.name} is healing by {healAmount}.")
@@ -84,8 +86,9 @@ class character:
             self.ap = self.ap + armorAmount
             if self.ap >= Const_MaxArmor:
                 self.ap = Const_MaxArmor
-            print(f"{self.name} armor is now {self.ap} ")
+            print(f"{self.name} now has +{self.ap} armor. ")
             time.sleep(1)
         else:
             print(f"{self.name}'s armor is full! (Armor: {self.ap})")
             time.sleep(1)
+

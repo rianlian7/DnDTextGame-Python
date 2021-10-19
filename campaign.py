@@ -10,6 +10,7 @@ Const_Env_Jungle = "jungle"
 Const_Env_Town = "town"
 Const_Env_List = [Const_Env_Plains, Const_Env_Snowy, Const_Env_Jungle, Const_Env_Town]
 
+
 class campaign:
 
     def __init__(self, type):
@@ -31,7 +32,7 @@ class campaign:
         count = 1
         while(count <= 5):
             self.stageList.append(Const_Env_List[random.randint(0, len(Const_Env_List)-1)])
-            print(f"Stage {count} : {self.stageList[count-1]}")
+            # print(f"Stage {count} : {self.stageList[count-1]}")
             count = count + 1
 
 

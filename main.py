@@ -56,20 +56,23 @@ time.sleep(1)
 
 
 if mainCampaign.type == Const_Linear:
+    event = False
     for seq, stage in enumerate(mainCampaign.stageList):
-        print(f"We are now in {stage} {seq+1}")
+        print(f"Stage {seq+1} : We are now in {stage} area.")
         time.sleep(1)
         input("Please enter to continue")
         event = encounters().randomEncounter(players)
-        print(f"Event is {event}")
-        if event:
+        if event == True:
             print("Battle has won!")
-        else: # lose battle
+        elif not event: # lose battle
             print("Battle has lost. GAMES END!")
             input("Press enter to end the game")
             break
+        elif event == "item":
+            print("Continuing journey")
 
         input("Please enter to go to the next stage")
-
+    if event:
+        print("Congratulation! You have reach to the end of the game")
 
 
