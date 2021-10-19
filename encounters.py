@@ -11,7 +11,7 @@ class encounters:
         randEncDiff = random.randint(1, 3)
 
         self.encType = 1  # 1-Battle, 2-Item
-        self.encTotal = 1  # Things to do/battle/get
+        self.encTotal = 2  # Things to do/battle/get
         self.encDiff = 1  # difficulty
 
     def randomEncounter(self, players):
@@ -31,13 +31,13 @@ class encounters:
         for i in range(0, self.encTotal):
             enemies.append(character(f"Enemy {i + 1}", "Enemy", random.randint(3, 7), 0, False))
 
-        # print("Players:")
-        # for player in players:
-        #     print(player.status())
-        #
-        # print("Enemies:")
-        # for enemy in enemies:
-        #     print(enemy.status())
+        print("Players:")
+        for player in players:
+            print(player.status())
+
+        print("Enemies:")
+        for enemy in enemies:
+            print(enemy.status())
         time.sleep(1)
 
         while True:  # Battle phase
@@ -48,19 +48,28 @@ class encounters:
                         print(player.status())
                         action = player.action()
                         if action == 1:  # attack
-                            for id, enemy in enumerate(enemies):
-                                print(f"{id + 1}. {enemy.status()}")
-                            selection = int(input("Enter the enemy number to attack: "))
+                            if len(enemies)>1:
+                                for id, enemy in enumerate(enemies):
+                                    print(f"{id + 1}. {enemy.status()}")
+                                selection = int(input("Enter the enemy number to attack: "))
+                            else:
+                                selection = 1
                             enemies[selection - 1].damage(random.randint(1, 5))
                         elif action == 2:  # heal
-                            for id, player in enumerate(players):
-                                print(f"{id + 1}. {player.status()}")
-                            selection = int(input("Enter the player number to heal: "))
+                            if len(players)>1:
+                                for id, player in enumerate(players):
+                                    print(f"{id + 1}. {player.status()}")
+                                selection = int(input("Enter the player number to heal: "))
+                            else:
+                                selection = 1
                             players[selection - 1].heal(random.randint(1, 3))
                         elif action == 3:  # fortify (add armor)
-                            for id, player in enumerate(players):
-                                print(f"{id + 1}. {player.status()}")
-                            selection = int(input("Enter the player number to fortify: "))
+                            if len(players) > 1:
+                                for id, player in enumerate(players):
+                                    print(f"{id + 1}. {player.status()}")
+                                selection = int(input("Enter the player number to fortify: "))
+                            else:
+                                selection = 1
                             players[selection - 1].fortify(random.randint(1, 3))
                         self.checkDead(enemies)
                         if self.checkBattle(enemies, "enemies"):
