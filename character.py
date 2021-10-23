@@ -1,7 +1,10 @@
 import time
 import random
+import actions
 Const_MaxHp = 10
 Const_MaxArmor = 5
+
+
 
 
 class character:
@@ -24,6 +27,34 @@ class character:
         return f"{self.name} ({self.job}): " \
                f" Health : {self.hp}" \
                f" | Armor : {self.ap} |"
+
+    def selectJob(self):
+        jobList = ["Paladin", "Assassin", "Archer"]
+        for seq, job in enumerate(jobList):
+            print(f"{seq+1} : {job}")
+        while True:
+            try:
+                selectedJob = int(input("Enter the number to select your job: "))
+                if selectedJob in range(1, len(jobList)+1):
+                    self.job = jobList[selectedJob-1]
+                    break
+                else:
+                    print("Please select job from the number above.")
+            except ValueError:
+                print("Please use number")
+
+    def loadActionList(self):
+        def loadActions(actionList):
+            for seq, action in enumerate(actionList):
+                print(f"{seq + 1}. {action.name} : {action.desc}")
+        if self.job == "Paladin":
+            loadActions(actions.PaladinActions)
+        if self.job == "Assassin":
+            loadActions(actions.AssassinActions)
+        if self.job == "Archer":
+            loadActions(actions.ArcherActions)
+
+
 
     def damage(self, dmgAmount):
         print(f"{self.name} received {dmgAmount} damages.")
