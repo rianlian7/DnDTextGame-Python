@@ -29,9 +29,12 @@ class campaign:
     def linear(self):
         print("Playing linear campaign")
         print("Generating map")
+        randomArea = Const_Env_List[random.randint(0, len(Const_Env_List)-1)]
+        print(f"We are in a {randomArea} land.")
         count = 1
         while(count <= 5):
-            self.stageList.append(Const_Env_List[random.randint(0, len(Const_Env_List)-1)])
+            # self.stageList.append(Const_Env_List[random.randint(0, len(Const_Env_List)-1)])
+            self.stageList.append(f"Stage {count}")
             # print(f"Stage {count} : {self.stageList[count-1]}")
             count = count + 1
 
