@@ -10,8 +10,8 @@ class encounters:
         randEncTotal = random.randint(1, 3)
         randEncDiff = random.randint(1, 3)
 
-        self.encType = 2  # 1-Battle, 2-Item
-        self.encTotal = 1 # Things to do/battle/get
+        self.encType = randEncType  # 1-Battle, 2-Item
+        self.encTotal = randEncTotal # Things to do/battle/get
         self.encDiff = 1  # difficulty
 
     def randomEncounter(self, players):
@@ -31,11 +31,11 @@ class encounters:
         enemies = []
         for i in range(0, self.encTotal):
             enemies.append(character(f"Enemy {i + 1}", "Enemy", random.randint(3, 7), 0, False))
-
+        print()
         print("Players:")
         for player in players:
             print(player.status())
-
+        print()
         print("Enemies:")
         for enemy in enemies:
             print(enemy.status())
@@ -137,8 +137,6 @@ class encounters:
     def checkBattle(self, characters, type):
         if len(characters) == 0:
             print(f"All {type} are now dead!")
-            time.sleep(1)
-            print("Battle Ends")
             time.sleep(1)
             return True
         return False

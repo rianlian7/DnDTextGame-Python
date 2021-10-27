@@ -40,8 +40,11 @@ while True:
         print()
         while (count <= playerTotal):
             playerName = input(f"Enter player {count} Name: ")
-            playerJob = input(f"Enter player {count} Job: ")
-            players.append(character(playerName, playerJob, Const_MaxHp, Const_MaxArmor, True))
+            # playerJob = input(f"Enter player {count} Job: ")
+            # players.append(character(playerName, playerJob, Const_MaxHp, Const_MaxArmor, True))
+            setupPlayer = character(playerName, "", 5, 0, True)
+            setupPlayer.selectJob()
+            players.append(setupPlayer)
             count = count + 1
             print()
         for player in players:
@@ -68,7 +71,7 @@ if mainCampaign.type == Const_Linear:
             input("Press enter to end the game")
             break
         elif event == "item":
-            print("Continuing journey")
+            print("\nContinuing journey")
 
         input("Please enter to go to the next stage")
     if event:

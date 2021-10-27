@@ -12,7 +12,7 @@ class character:
     def __init__(self, name, job, hp, ap, isPlayer):
         self.name = name
         self.job = job
-        self.hp = hp  # health point
+        self.hp = hp  # health point1
         self.ap = ap  # armor point
         self.isPlayer = isPlayer  # player or npc
 
@@ -26,7 +26,7 @@ class character:
         #         }
         return f"{self.name} ({self.job}): " \
                f" Health : {self.hp}" \
-               f" | Armor : {self.ap} |"
+               f" | Armor : {self.ap}"
 
     def selectJob(self):
         jobList = ["Paladin", "Assassin", "Archer"]
@@ -82,6 +82,7 @@ class character:
             time.sleep(1)
 
 
+
     def heal(self, healAmount):
         print(f"{self.name} is healing by {healAmount}.")
         time.sleep(1)
@@ -89,20 +90,20 @@ class character:
             self.hp = self.hp + healAmount
             if self.hp >= Const_MaxHp:
                 self.hp = 10
-            print(f"{self.name} health is now {self.hp} ")
-            time.sleep(1)
         else:
             print(f"{self.name} health is already full! (HP: {self.hp})")
             time.sleep(1)
+        self.currentStatus()
+
 
     def action(self):
         if self.isPlayer:
             try:
-                print('''
-                1. Attack
-                2. Heal
-                3. Fortify
-                ''')
+                print("What do you do? "
+                      "\n1. Attack"
+                      "\n2. Heal"
+                      "\n3. Fortify"
+                      "\nPlease select an action:")
                 action = int(input())
             except:
                 print("Please enter the right input.")
@@ -117,9 +118,13 @@ class character:
             self.ap = self.ap + armorAmount
             if self.ap >= Const_MaxArmor:
                 self.ap = Const_MaxArmor
-            print(f"{self.name} now has +{self.ap} armor. ")
-            time.sleep(1)
         else:
             print(f"{self.name}'s armor is full! (Armor: {self.ap})")
             time.sleep(1)
+        self.currentStatus()
+
+    def currentStatus(self):
+        print(f"Player Status: {self.name} ({self.job}) - " \
+               f" Health: {self.hp}" \
+               f" | Armor: {self.ap}")
 
